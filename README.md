@@ -4,8 +4,9 @@ ICE is a TCP/IP based Intelligent Cloud Environment library allowing for quick s
 
 ## Getting Started
 
-1) sudo chmod +x start_client_server.sh
-2) ./start_client_server.sh
+1) cd scripts
+2) sudo chmod +x start_client_server.sh
+3) ./start_client_server.sh
 
 ### Prerequisites: 
 
