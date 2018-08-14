@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.*;
 import java.net.*;
 import java.util.Scanner;
 import java.io.*;
@@ -23,9 +24,21 @@ public class Client {
 
 	// receive message from server
 	public String receiveMessage() throws IOException {
-		Scanner sc = new Scanner(socket.getInputStream());
-		return sc.nextLine();
+		Scanner scanner = new Scanner(socket.getInputStream());
+		System.out.println(scanner.nextLine());
+		return "";
 	}
+
+//	public void processFile(String filename) throws IOException {
+//	    String line;
+//        FileReader fileReader = new FileReader(filename);
+//        BufferedReader bufferedReader = new BufferedReader(fileReader);
+//
+//        while((line = bufferedReader.readLine()) != null) {
+//            sendMessage(line);
+//        }
+//        bufferedReader.close();
+//    }
 
 	public static void main(String[] args) {
 		try {
@@ -33,8 +46,9 @@ public class Client {
 			Client client = new Client(new Socket(hostIa, TCP_PORT));
 			System.out.println("established tcp connection with server");
 
-			client.sendMessage("message");
-			System.out.println(client.receiveMessage());
+            //client.processFile("test/largefile");
+			client.sendMessage("hi");
+			client.receiveMessage();
 
 			client.socket.close();
 		} catch (UnknownHostException e) {

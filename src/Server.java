@@ -16,31 +16,33 @@ public class Server extends Thread {
     }
 
     // recieve message from client
-    private String receiveMessage() throws IOException {
-        Scanner scanner = new Scanner(socket.getInputStream());
-        String clientMessage = scanner.nextLine();
-        return clientMessage;
+    private String receiveMessage() {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(scanner.nextLine());
+        return "";
     }
 
     // send message to client
     private void sendMessage(String message) {
+        PrintWriter pout = null;
         try {
-            PrintWriter pout = new PrintWriter(socket.getOutputStream());
-            pout.println(message);
-            pout.flush();
+            pout = new PrintWriter(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        pout.flush();
     }
 
     @Override
     public void run() {
-        try {
-            System.out.println(receiveMessage());
-            sendMessage("message");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        receiveMessage();
+        sendMessage("DO YOU SEE THIS?");
     }
 
     public static void main(String[] args) throws IOException {
